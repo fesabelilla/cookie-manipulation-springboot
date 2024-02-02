@@ -23,4 +23,16 @@ public class CookieController {
         System.out.println(test);
         return test;
     }
+
+
+    @GetMapping("/expiry")
+    public String setCookieExpiry(HttpServletResponse response) {
+        int cookieAgeInSeconds = 86400;
+
+        Cookie cookie = new Cookie("website", "https://websparrow.org");
+        cookie.setMaxAge(cookieAgeInSeconds); // expire in 1 day
+        response.addCookie(cookie);
+
+        return "Cookie will expire in " + cookieAgeInSeconds + "seconds.";
+    }
 }
