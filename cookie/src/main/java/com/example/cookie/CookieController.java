@@ -17,4 +17,10 @@ public class CookieController {
         return "Spring Boot Cookies";
     }
 
+
+    @GetMapping("/get")
+    public String getCookie(@CookieValue(value = "test", defaultValue = "Test") String test) {
+        System.out.println(test);
+        return test;
+    }
 }
