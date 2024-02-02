@@ -35,4 +35,13 @@ public class CookieController {
 
         return "Cookie will expire in " + cookieAgeInSeconds + "seconds.";
     }
+
+    @GetMapping("/delete")
+    public String deleteCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("color", null);
+        cookie.setMaxAge(0); // delete cookie
+        response.addCookie(cookie);
+
+        return "Cookie deleted";
+    }
 }
