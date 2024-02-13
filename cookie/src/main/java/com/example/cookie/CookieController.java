@@ -12,27 +12,25 @@ public class CookieController {
 
     @GetMapping("/set")
     public String setCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie("test", "1_2_3_4_5");
+        Cookie cookie = new Cookie("user_name", "fesabelilla");
         response.addCookie(cookie);
-        return "Spring Boot Cookies";
+        return "Cookie Set Successfully";
     }
-
 
     @GetMapping("/get")
-    public String getCookie(@CookieValue(value = "test", defaultValue = "Test") String test) {
-        System.out.println(test);
-        return test;
+    public String getCookie(@CookieValue(value = "user_name", defaultValue = "Test") String cookie) {
+        if(cookie.equals("Test")) {
+            return "No Cookie Found";
+        }
+        return cookie;
     }
-
 
     @GetMapping("/expiry")
     public String setCookieExpiry(HttpServletResponse response) {
         int cookieAgeInSeconds = 86400;
-
         Cookie cookie = new Cookie("website", "https://websparrow.org");
         cookie.setMaxAge(cookieAgeInSeconds); // expire in 1 day
         response.addCookie(cookie);
-
         return "Cookie will expire in " + cookieAgeInSeconds + "seconds.";
     }
 
@@ -41,7 +39,6 @@ public class CookieController {
         Cookie cookie = new Cookie("color", null);
         cookie.setMaxAge(0); // delete cookie
         response.addCookie(cookie);
-
         return "Cookie deleted";
     }
 }
