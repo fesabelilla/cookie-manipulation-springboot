@@ -27,18 +27,18 @@ public class CookieController {
 
     @GetMapping("/expiry")
     public String setCookieExpiry(HttpServletResponse response) {
-        int cookieAgeInSeconds = 86400;
-        Cookie cookie = new Cookie("website", "https://websparrow.org");
-        cookie.setMaxAge(cookieAgeInSeconds); // expire in 1 day
+        int cookieAgeInSeconds = 2;
+        Cookie cookie = new Cookie("user_name", "fesabelilla");
+        cookie.setMaxAge(cookieAgeInSeconds); // expire in 2 minutes
         response.addCookie(cookie);
         return "Cookie will expire in " + cookieAgeInSeconds + "seconds.";
     }
 
     @GetMapping("/delete")
     public String deleteCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie("color", null);
+        Cookie cookie = new Cookie("user_name", null);
         cookie.setMaxAge(0); // delete cookie
         response.addCookie(cookie);
-        return "Cookie deleted";
+        return "Cookie Deleted";
     }
 }
